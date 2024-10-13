@@ -100,7 +100,16 @@ class LinkedList {
         while(temp!= NULL){
             node* minNode = temp;
             node* minNodePrev = head;
-            
+            for(node* current = temp->next; current!= NULL; current = current->next){
+                if(current->data < minNode->data){
+                    minNode = current;
+                    minNodePrev = temp;
+                }
+            }
+            int tempData = minNode->data;
+            minNode->data = temp->data;
+            temp->data = tempData;
+            temp = minNodePrev->next;
         }
     }
 };
@@ -115,7 +124,7 @@ int main()
     list.addNodeToEnd(30);
     list.addNodeToEnd(35);
     list.printList();
-    list.sortTheList();
+    // list.sortTheList();
     list.printList();
     return 0;
 }
